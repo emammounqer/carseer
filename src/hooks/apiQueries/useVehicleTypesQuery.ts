@@ -12,5 +12,6 @@ export const useVehicleTypesQuery = ({ makeId }: { makeId: number }) => {
       );
       return response.data;
     },
+    enabled: !!makeId,
   });
 };

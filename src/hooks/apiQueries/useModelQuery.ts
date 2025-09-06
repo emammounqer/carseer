@@ -18,5 +18,6 @@ export const useModelQuery = ({
       );
       return response.data;
     },
+    enabled: !!makeId && !!modelYear,
   });
 };

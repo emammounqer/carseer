@@ -3,8 +3,8 @@ import { useMakeQuery } from "@/hooks/apiQueries/useMakeQuery";
 import type { Make } from "@/types/api";
 import { Combobox } from "@/components/combobox";
 import { useVehicleTypeFilter } from "@/context/VehicleTypeFilterProvider";
-import { useModelQuery } from "@/hooks/apiQueries/useModelQuery";
-import { useVehicleTypesQuery } from "@/hooks/apiQueries/useVehicleTypesQuery";
+import { Models } from "@/pages/home/components/Models";
+import { VehicleTypesList } from "@/pages/home/components/VehicleTypes";
 
 export default function Home() {
   const { make, year, setMake, setYear } = useVehicleTypeFilter();
@@ -15,21 +15,12 @@ export default function Home() {
     error: makeError,
   } = useMakeQuery();
 
-  const { data: modelsResponse } = useModelQuery({
-    makeId: make || 0,
-    modelYear: year || 0,
-  });
-
-  const { data: vehicleTypesResponse } = useVehicleTypesQuery({
-    makeId: make || 0,
-  });
-
   if (makeLoading) return <div>Loading...</div>;
   if (makeError) return <div>Error: {makeError.message}</div>;
 
   return (
-    <div className="min-h-screen bg-background p-4">
-      <Card>
+    <div className="min-h-screen bg-background p-4 flex flex-col gap-4 ">
+      <Card className="flex flex-row gap-4 p-4">
         <Combobox
           options={mapMakeToOptions(makesResponse?.Results || [])}
           value={make?.toString()}
@@ -43,14 +34,13 @@ export default function Home() {
         ></Combobox>
       </Card>
 
-      <div>
-        <h2>Models</h2>
-        <pre>{JSON.stringify(modelsResponse, null, 2)}</pre>
-      </div>
-
-      <div>
-        <h2>Vehicle Types</h2>
-        <pre>{JSON.stringify(vehicleTypesResponse, null, 2)}</pre>
+      <div className="grid grid-cols-2 gap-4">
+        <div>
+          <Models />
+        </div>
+        <div>
+          <VehicleTypesList />
+        </div>
       </div>
     </div>
   );
@@ -59,7 +49,7 @@ export default function Home() {
 const mapMakeToOptions = (makes: Make[]) => {
   return makes.map((make) => ({
     value: make.Make_ID.toString(),
-    label: make.Make_Name,
+    label: `${make.Make_Name} (${make.Make_ID})`,
   }));
 };
 

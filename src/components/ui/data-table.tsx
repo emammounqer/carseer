@@ -15,6 +15,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { Spinner } from "@/components/ui/shadcn-io/spinner";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -60,14 +61,17 @@ export function DataTable<TData, TValue>({
           <TableBody>
             <TableRow>
               <TableCell colSpan={columns.length} className="h-24 text-center">
-                Loading...
+                <Spinner className="m-auto" />
               </TableCell>
             </TableRow>
           </TableBody>
         ) : error ? (
           <TableBody>
             <TableRow>
-              <TableCell colSpan={columns.length} className="h-24 text-center">
+              <TableCell
+                colSpan={columns.length}
+                className="h-24 text-center text-destructive"
+              >
                 Error: {error.message}
               </TableCell>
             </TableRow>

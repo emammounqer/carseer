@@ -26,15 +26,8 @@ export default function LoadingPage() {
 
           {/* Rotating ring around logo */}
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-40 h-40 border-2 border-primary/20 rounded-full animate-spin"></div>
+            <div className="w-48 h-46 border-2 border-primary/20 rounded-full animate-spin flex-shrink-0"></div>
           </div>
-        </div>
-
-        {/* Loading dots */}
-        <div className="flex justify-center space-x-1 mt-24">
-          <div className="w-2 h-2 bg-primary rounded-full animate-bounce"></div>
-          <div className="w-2 h-2 bg-primary rounded-full animate-bounce delay-100"></div>
-          <div className="w-2 h-2 bg-primary rounded-full animate-bounce delay-200"></div>
         </div>
       </div>
     </div>

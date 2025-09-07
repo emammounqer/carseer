@@ -25,7 +25,7 @@ export default function Home() {
       </header>
 
       <div className="bg-background p-4 flex flex-col gap-4 container mx-auto">
-        <Card className="flex flex-row gap-4 p-4 sticky z-50 top-0 ">
+        <Card className="flex flex-row gap-4 p-4 sticky z-50 top-0 flex-wrap">
           <MakeSelect />
 
           <Combobox
@@ -33,6 +33,7 @@ export default function Home() {
             options={getYears()}
             value={year?.toString()}
             onChange={(value) => setYear(value ? parseInt(value) : null)}
+            width="w-[300px]"
           ></Combobox>
         </Card>
 

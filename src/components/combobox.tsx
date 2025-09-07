@@ -22,9 +22,20 @@ type ComboboxProps = {
   options: { value: string; label: string }[];
   value?: string;
   onChange?: (value: string) => void;
+  placeholder?: string;
+  search?: string;
+  setSearch?: (search: string) => void;
 };
 
-export function Combobox({ options, width, value, onChange }: ComboboxProps) {
+export function Combobox({
+  options,
+  width,
+  value,
+  onChange,
+  placeholder,
+  search,
+  setSearch,
+}: ComboboxProps) {
   const [open, setOpen] = React.useState(false);
 
   const handleSelect = (newValue: string) => {
@@ -44,14 +55,18 @@ export function Combobox({ options, width, value, onChange }: ComboboxProps) {
           <span className="truncate">
             {value
               ? options.find((option) => option.value === value)?.label
-              : "Select..."}
+              : placeholder}
           </span>
           <ChevronsUpDownIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
       <PopoverContent className={cn("w-[200px] p-0", width)}>
         <Command>
-          <CommandInput placeholder="Search..." />
+          <CommandInput
+            placeholder="Search..."
+            value={search}
+            onValueChange={setSearch}
+          />
           <CommandList>
             <CommandEmpty>No Result Found</CommandEmpty>
             <CommandGroup>

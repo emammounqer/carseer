@@ -32,6 +32,13 @@ function Models() {
       columns={columns}
       data={modelsResponse?.Results || []}
       isLoading={isLoading}
+      noResultsMessage={
+        make && year
+          ? "No models found."
+          : year
+          ? "Select a make."
+          : "Select a year."
+      }
     />
   );
 }

@@ -33,6 +33,7 @@ function VehicleTypesList() {
       data={vehicleTypesResponse?.Results || []}
       isLoading={isLoading}
       error={error}
+      noResultsMessage={make ? "No vehicle types found." : "Select a make."}
     />
   );
 }

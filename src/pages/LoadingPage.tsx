@@ -2,7 +2,7 @@
 
 export default function LoadingPage() {
   return (
-    <div className="min-h-screen bg-background flex flex-col items-center justify-center relative overflow-hidden">
+    <div className="fixed inset-0 min-h-screen bg-background flex flex-col items-center justify-center  overflow-hidden">
       {/* Background animated elements */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-primary rounded-full animate-pulse"></div>
